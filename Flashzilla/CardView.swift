@@ -82,15 +82,14 @@ struct CardView: View {
                         }
                         removal?()
                     } else {
-                        withAnimation {
-                            offset = .zero
-                        }
+                        offset = .zero
                     }
                 })
         )
         .onTapGesture {
             isShowingAnswer.toggle()
         }
+        .animation(.spring(), value: offset)
     }
 }
 
