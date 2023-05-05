@@ -16,7 +16,7 @@ extension View {
 
 struct ContentView: View {
     
-    @State private var cards = Array<Card>(repeating: Card.example, count: 3)
+    @State private var cards = [Card]()
     
     @Environment(\.scenePhase) var scenePhase
     @State private var isActive = true
@@ -26,6 +26,8 @@ struct ContentView: View {
     
     @State private var timeRemaining = 100
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    @State private var showingEditScreen = false
     
     var body: some View {
         ZStack {
@@ -62,6 +64,25 @@ struct ContentView: View {
                         .foregroundColor(.black)
                         .clipShape(Capsule())
                 }
+            }
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        showingEditScreen = true
+                    } label: {
+                        Image(systemName: "plus.circle")
+                            .padding()
+                            .background(.black.opacity(0.75))
+                            .clipShape(Circle())
+                    }
+                }
+                .foregroundColor(.white)
+                .font(.largeTitle)
+                .padding()
+                
+                Spacer()
             }
             
             if differentiateWithoutColor || voiceOverEnabled {
@@ -120,6 +141,20 @@ struct ContentView: View {
                 isActive = false
             }
         }
+        .sheet(
+            isPresented: $showingEditScreen,
+            onDismiss: resetCards,
+            content: EditCards.init
+        )
+        .onAppear(perform: resetCards)
+    }
+    
+    private func loadData() {
+        if let data = UserDefaults.standard.data(forKey: "Cards") {
+            if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
+                cards = decoded
+            }
+        }
     }
     
     private func removeCard(at index: Int) {
@@ -132,9 +167,9 @@ struct ContentView: View {
     }
     
     private func resetCards() {
-        cards = Array<Card>(repeating: Card.example, count: 3)
         timeRemaining = 100
         isActive = true
+        loadData()
     }
 }
 
