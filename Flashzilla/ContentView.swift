@@ -15,16 +15,10 @@ extension View {
 }
 
 struct ContentView: View {
-    
-    @State private var cards = [Card]()
-    
     @Environment(\.scenePhase) var scenePhase
-    @State private var isActive = true
     
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
-    
-    @State private var showingEditScreen = false
     
     @StateObject private var viewModel = ViewModel(cards: [])
     
@@ -35,19 +29,19 @@ struct ContentView: View {
                 .ignoresSafeArea()
             VStack(spacing: 5) {
                 ZStack {
-                    ForEach(0..<cards.count, id: \.self) { index in
-                        CardView(card: cards[index]) {
+                    ForEach(0..<viewModel.cards.count, id: \.self) { index in
+                        CardView(card: viewModel.cards[index]) {
                             withAnimation {
-                                removeCard(at: index)
+                                viewModel.removeCard(at: index)
                             }
                         }
-                        .stacked(at: index, in: cards.count)
-                        .allowsHitTesting(index == cards.count - 1)
-                        .accessibilityHidden(index < cards.count - 1)
+                        .stacked(at: index, in: viewModel.cards.count)
+                        .allowsHitTesting(index == viewModel.cards.count - 1)
+                        .accessibilityHidden(index < viewModel.cards.count - 1)
                     }
                 }
                 
-                if cards.isEmpty {
+                if viewModel.cards.isEmpty {
                     Button("Start Again", action: resetCards)
                         .padding()
                         .background(.white)
@@ -60,7 +54,7 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     Button {
-                        showingEditScreen = true
+                        viewModel.showingEditScreen = true
                     } label: {
                         Image(systemName: "plus.circle")
                             .padding()
@@ -77,47 +71,30 @@ struct ContentView: View {
             
             if differentiateWithoutColor || voiceOverEnabled {
                 ContentViewAccessibility(removeCardClosure: {
-                    removeCard(at: cards.count - 1)
+                    viewModel.removeCard(at: viewModel.cards.count - 1)
                 })
             }
         }
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
-                if cards.isEmpty == false {
-                    isActive = true
+                if viewModel.cards.isEmpty == false {
+                    viewModel.isActive = true
                 }
             } else {
-                isActive = false
+                viewModel.isActive = false
             }
         }
         .sheet(
-            isPresented: $showingEditScreen,
-            onDismiss: resetCards,
+            isPresented: $viewModel.showingEditScreen,
+            onDismiss: viewModel.resetCards,
             content: EditCards.init
         )
-        .onAppear(perform: resetCards)
+        .onAppear(perform: viewModel.resetCards)
     }
     
-    private func loadData() {
-        if let data = UserDefaults.standard.data(forKey: "Cards") {
-            if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
-                cards = decoded
-            }
-        }
-    }
-    
-    private func removeCard(at index: Int) {
-        guard index >= 0 else { return }
-        cards.remove(at: index)
-        
-        if cards.isEmpty {
-            isActive = false
-        }
-    }
-    
+    // Workaround to avoid the warning "... loses global actor"
     private func resetCards() {
-        isActive = true
-        loadData()
+        viewModel.resetCards()
     }
 }
 
