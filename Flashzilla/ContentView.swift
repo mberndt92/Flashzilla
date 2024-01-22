@@ -24,10 +24,9 @@ struct ContentView: View {
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
     
-    @State private var timeRemaining = 100
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
     @State private var showingEditScreen = false
+    
+    @StateObject private var viewModel = ViewModel(cards: [])
     
     var body: some View {
         ZStack {
@@ -35,14 +34,6 @@ struct ContentView: View {
                 .resizable()
                 .ignoresSafeArea()
             VStack(spacing: 5) {
-                Text("Time: \(timeRemaining)")
-                    .font(.largeTitle)
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 5)
-                    .background(.black.opacity(0.75))
-                    .clipShape(Capsule())
-                
                 ZStack {
                     ForEach(0..<cards.count, id: \.self) { index in
                         CardView(card: cards[index]) {
@@ -55,7 +46,6 @@ struct ContentView: View {
                         .accessibilityHidden(index < cards.count - 1)
                     }
                 }
-                .allowsHitTesting(timeRemaining > 0)
                 
                 if cards.isEmpty {
                     Button("Start Again", action: resetCards)
@@ -86,51 +76,10 @@ struct ContentView: View {
             }
             
             if differentiateWithoutColor || voiceOverEnabled {
-                VStack {
-                    Spacer()
-                    
-                    HStack {
-                        Button {
-                            withAnimation {
-                                removeCard(at: cards.count - 1)
-                            }
-                        } label: {
-                            Image(systemName: "xmark.circle")
-                                .padding()
-                                .background(.black.opacity(0.7))
-                                .clipShape(Circle())
-                        }
-                        .accessibilityLabel("Wrong")
-                        .accessibilityHint("Mark your answer as being incorrect")
-                        
-                        Spacer()
-                        
-                        Button {
-                            withAnimation {
-                                removeCard(at: cards.count - 1)
-                            }
-                        } label: {
-                            Image(systemName: "checkmark.circle")
-                                .padding()
-                                .background(.black.opacity(0.7))
-                                .clipShape(Circle())
-                        }
-                        .accessibilityLabel("Correct")
-                        .accessibilityHint("Mark your answer as being correct")
-                    }
-                    .foregroundColor(.white)
-                    .font(.largeTitle)
-                    .padding()
-                }
+                ContentViewAccessibility(removeCardClosure: {
+                    removeCard(at: cards.count - 1)
+                })
             }
-        }
-        .onReceive(timer) { time in
-            guard isActive else { return }
-            
-            if timeRemaining > 0 {
-                timeRemaining -= 1
-            }
-                
         }
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
@@ -167,7 +116,6 @@ struct ContentView: View {
     }
     
     private func resetCards() {
-        timeRemaining = 100
         isActive = true
         loadData()
     }

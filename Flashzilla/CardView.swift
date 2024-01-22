@@ -62,7 +62,7 @@ struct CardView: View {
             .padding()
             .multilineTextAlignment(.center)
         }
-        .frame(width: 450, height: 250)
+        .frame(width: 300, height: 450)
         .rotationEffect(.degrees(Double(offset.width / 5)))
         .offset(x: offset.width * 5, y: 0)
         .opacity(2 - Double(abs(offset.width / 50)))
