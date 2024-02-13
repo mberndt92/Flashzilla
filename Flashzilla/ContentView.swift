@@ -22,6 +22,10 @@ struct ContentView: View {
     
     @StateObject private var viewModel = ViewModel(cards: [])
     
+    var shouldShowAccessibilityView: Bool {
+        return differentiateWithoutColor || voiceOverEnabled
+    }
+    
     var body: some View {
         ZStack {
             Image(decorative: "background")
@@ -69,7 +73,7 @@ struct ContentView: View {
                 Spacer()
             }
             
-            if differentiateWithoutColor || voiceOverEnabled {
+            if shouldShowAccessibilityView {
                 ContentViewAccessibility(removeCardClosure: {
                     viewModel.removeCard(at: viewModel.cards.count - 1)
                 })
@@ -96,6 +100,7 @@ struct ContentView: View {
     private func resetCards() {
         viewModel.resetCards()
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
