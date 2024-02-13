@@ -20,27 +20,30 @@ struct CardView: View {
     @State private var offset: CGSize = CGSize.zero
     @State private var isShowingAnswer = false
     
+    let cornerRadius: CGFloat = 25
+    let shadowRadius: CGFloat = 10
+    
     var body: some View {
         ZStack {
             RoundedRectangle(
-                cornerRadius: 25,
+                cornerRadius: cornerRadius,
                 style: .continuous
             )
                 .fill(
                     differentiateWithoutColor
                     ? .white
-                    : .white.opacity(1 - Double(abs(offset.width / 50)))
+                    : .white.opacity(1 - Double(abs(offset.width / 40)))
                 )
                 .background(
                     differentiateWithoutColor
                     ? nil
                     : RoundedRectangle(
-                        cornerRadius: 25,
+                        cornerRadius: cornerRadius,
                         style: .continuous
                     )
-                    .fill(offset.width > 0 ? .green : .red)
+                    .fill(calculateFillColor())
                 )
-                .shadow(radius: 10)
+                .shadow(radius: shadowRadius)
             
             VStack {
                 if voiceOverEnabled {
@@ -71,15 +74,9 @@ struct CardView: View {
             DragGesture()
                 .onChanged({ gesture in
                     offset = gesture.translation
-                    if (offset.width < 0) {
-                        feedback.prepare()
-                    }
                 })
                 .onEnded({ gesture in
                     if abs(offset.width) > 100 {
-                        if offset.width < 0 {
-                            feedback.notificationOccurred(.error)
-                        }
                         removal?()
                     } else {
                         offset = .zero
@@ -90,6 +87,15 @@ struct CardView: View {
             isShowingAnswer.toggle()
         }
         .animation(.spring(), value: offset)
+    }
+    
+    private func calculateFillColor() -> Color {
+        switch offset.width {
+        case 0: return .white
+        case let x where x < 0: return .red
+        case let x where x > 0: return .green
+        default: return .black
+        }
     }
 }
 
