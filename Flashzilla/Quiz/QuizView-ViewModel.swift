@@ -1,5 +1,5 @@
 //
-//  ContentView-ViewModel.swift
+//  QuizView-ViewModel.swift
 //  Flashzilla
 //
 //  Created by Maximilian Berndt on 22.01.24.
@@ -7,22 +7,16 @@
 
 import Foundation
 
-extension ContentView {
+extension QuizView {
     @MainActor class ViewModel: ObservableObject {
+        let initialCards: [Card]
         @Published var cards: [Card]
         @Published var isActive = true
         @Published var showingEditScreen = false
         
         init(cards: [Card]) {
             self.cards = cards
-        }
-        
-        func loadData() {
-            if let data = UserDefaults.standard.data(forKey: "Cards") {
-                if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
-                    cards = decoded.shuffled()
-                }
-            }
+            self.initialCards = cards
         }
         
         func removeCard(at index: Int) {
@@ -36,7 +30,7 @@ extension ContentView {
         
         func resetCards() {
             isActive = true
-            loadData()
+            cards = initialCards.shuffled()
         }
     }
 }

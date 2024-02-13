@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentViewAccessibility: View {
+struct QuizViewAccessibility: View {
     
     var removeCardClosure: () -> ()
     
@@ -50,8 +50,8 @@ struct ContentViewAccessibility: View {
     }
 }
 
-struct ContentViewAccessibility_Previews: PreviewProvider {
+struct QuizViewAccessibility_Previews: PreviewProvider {
     static var previews: some View {
-        ContentViewAccessibility(removeCardClosure: {})
+        QuizViewAccessibility(removeCardClosure: {})
     }
 }
