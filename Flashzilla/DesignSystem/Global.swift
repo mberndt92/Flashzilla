@@ -7,7 +7,7 @@
 
 import Foundation
 
-let isDebugging = false
+let isTesting = true
 
 var currencyIdentifier: String {
     return Locale.current.currency?.identifier ?? "USD"

@@ -54,7 +54,7 @@ struct FlashCardListView: View {
             .toolbar {
                 ToolbarItem {
                     Button {
-                        if isDebugging {
+                        if isTesting {
                             addExample()
                         } else {
                             showingAddCard = true
@@ -65,7 +65,7 @@ struct FlashCardListView: View {
                             .tint(Color.designSystem.primary)
                     }
                 }
-                if isDebugging {
+                if isTesting {
                     ToolbarItem(placement: .topBarLeading) {
                         Button {
                             addExamples()
