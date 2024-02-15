@@ -11,16 +11,16 @@
 		50730C7D2B5E58F4007E26F3 /* QuizView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50730C7C2B5E58F4007E26F3 /* QuizView-ViewModel.swift */; };
 		50730C7F2B62425E007E26F3 /* CardOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50730C7E2B62425E007E26F3 /* CardOverview.swift */; };
 		50A722BA2B7BF7CE009AD7AB /* FlashCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722B92B7BF7CE009AD7AB /* FlashCardListView.swift */; };
-		50A722C12B7BFC24009AD7AB /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722BC2B7BFC24009AD7AB /* Global.swift */; };
-		50A722C22B7BFC24009AD7AB /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722BD2B7BFC24009AD7AB /* Shadows.swift */; };
-		50A722C32B7BFC24009AD7AB /* Translations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722BE2B7BFC24009AD7AB /* Translations.swift */; };
-		50A722C42B7BFC24009AD7AB /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722BF2B7BFC24009AD7AB /* PrimaryButton.swift */; };
-		50A722C52B7BFC24009AD7AB /* Colors+Flashzilla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722C02B7BFC24009AD7AB /* Colors+Flashzilla.swift */; };
 		50A722C72B7BFEDC009AD7AB /* AddFlashCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722C62B7BFEDC009AD7AB /* AddFlashCardView.swift */; };
 		50A722C92B7C020D009AD7AB /* FlashCardListView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722C82B7C020D009AD7AB /* FlashCardListView-ViewModel.swift */; };
 		50A722CC2B7C03DE009AD7AB /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722CB2B7C03DE009AD7AB /* QuizView.swift */; };
 		50A722CE2B7C049D009AD7AB /* View+Stacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722CD2B7C049D009AD7AB /* View+Stacked.swift */; };
 		50A722D42B7C07D5009AD7AB /* FileManager+SaveInDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722D32B7C07D5009AD7AB /* FileManager+SaveInDocuments.swift */; };
+		50A722F32B7DFC1B009AD7AB /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722EE2B7DFC1B009AD7AB /* Global.swift */; };
+		50A722F42B7DFC1B009AD7AB /* Shadows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722EF2B7DFC1B009AD7AB /* Shadows.swift */; };
+		50A722F52B7DFC1B009AD7AB /* Translations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722F02B7DFC1B009AD7AB /* Translations.swift */; };
+		50A722F62B7DFC1B009AD7AB /* Colors+Flashzilla.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722F12B7DFC1B009AD7AB /* Colors+Flashzilla.swift */; };
+		50A722F72B7DFC1B009AD7AB /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722F22B7DFC1B009AD7AB /* PrimaryButton.swift */; };
 		8A68860E2A04794700DE1361 /* FlashzillaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A68860D2A04794700DE1361 /* FlashzillaApp.swift */; };
 		8A6886102A04794700DE1361 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A68860F2A04794700DE1361 /* ContentView.swift */; };
 		8A6886122A04794700DE1361 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A6886112A04794700DE1361 /* Assets.xcassets */; };
@@ -35,16 +35,16 @@
 		50730C7C2B5E58F4007E26F3 /* QuizView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuizView-ViewModel.swift"; sourceTree = "<group>"; };
 		50730C7E2B62425E007E26F3 /* CardOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOverview.swift; sourceTree = "<group>"; };
 		50A722B92B7BF7CE009AD7AB /* FlashCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardListView.swift; sourceTree = "<group>"; };
-		50A722BC2B7BFC24009AD7AB /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		50A722BD2B7BFC24009AD7AB /* Shadows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
-		50A722BE2B7BFC24009AD7AB /* Translations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translations.swift; sourceTree = "<group>"; };
-		50A722BF2B7BFC24009AD7AB /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
-		50A722C02B7BFC24009AD7AB /* Colors+Flashzilla.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Colors+Flashzilla.swift"; sourceTree = "<group>"; };
 		50A722C62B7BFEDC009AD7AB /* AddFlashCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlashCardView.swift; sourceTree = "<group>"; };
 		50A722C82B7C020D009AD7AB /* FlashCardListView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlashCardListView-ViewModel.swift"; sourceTree = "<group>"; };
 		50A722CB2B7C03DE009AD7AB /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		50A722CD2B7C049D009AD7AB /* View+Stacked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Stacked.swift"; sourceTree = "<group>"; };
 		50A722D32B7C07D5009AD7AB /* FileManager+SaveInDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+SaveInDocuments.swift"; sourceTree = "<group>"; };
+		50A722EE2B7DFC1B009AD7AB /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		50A722EF2B7DFC1B009AD7AB /* Shadows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadows.swift; sourceTree = "<group>"; };
+		50A722F02B7DFC1B009AD7AB /* Translations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Translations.swift; sourceTree = "<group>"; };
+		50A722F12B7DFC1B009AD7AB /* Colors+Flashzilla.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Colors+Flashzilla.swift"; sourceTree = "<group>"; };
+		50A722F22B7DFC1B009AD7AB /* PrimaryButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		8A68860A2A04794700DE1361 /* Flashzilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashzilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A68860D2A04794700DE1361 /* FlashzillaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashzillaApp.swift; sourceTree = "<group>"; };
 		8A68860F2A04794700DE1361 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,19 +76,6 @@
 			path = FlashCards;
 			sourceTree = "<group>";
 		};
-		50A722BB2B7BFC24009AD7AB /* DesignSystem */ = {
-			isa = PBXGroup;
-			children = (
-				50A722BC2B7BFC24009AD7AB /* Global.swift */,
-				50A722BD2B7BFC24009AD7AB /* Shadows.swift */,
-				50A722BE2B7BFC24009AD7AB /* Translations.swift */,
-				50A722BF2B7BFC24009AD7AB /* PrimaryButton.swift */,
-				50A722C02B7BFC24009AD7AB /* Colors+Flashzilla.swift */,
-			);
-			name = DesignSystem;
-			path = Flashzilla/DesignSystem;
-			sourceTree = SOURCE_ROOT;
-		};
 		50A722CA2B7C03D2009AD7AB /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +104,18 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		50A722ED2B7DFC1B009AD7AB /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				50A722EE2B7DFC1B009AD7AB /* Global.swift */,
+				50A722EF2B7DFC1B009AD7AB /* Shadows.swift */,
+				50A722F02B7DFC1B009AD7AB /* Translations.swift */,
+				50A722F12B7DFC1B009AD7AB /* Colors+Flashzilla.swift */,
+				50A722F22B7DFC1B009AD7AB /* PrimaryButton.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
 		8A6886012A04794700DE1361 = {
 			isa = PBXGroup;
 			children = (
@@ -136,10 +135,10 @@
 		8A68860C2A04794700DE1361 /* Flashzilla */ = {
 			isa = PBXGroup;
 			children = (
+				50A722ED2B7DFC1B009AD7AB /* DesignSystem */,
 				50A722D02B7C0756009AD7AB /* Models */,
 				50A722CF2B7C04CE009AD7AB /* Extensions */,
 				50A722CA2B7C03D2009AD7AB /* Quiz */,
-				50A722BB2B7BFC24009AD7AB /* DesignSystem */,
 				50A722B82B7BF6AC009AD7AB /* FlashCards */,
 				8A68860D2A04794700DE1361 /* FlashzillaApp.swift */,
 				8A68860F2A04794700DE1361 /* ContentView.swift */,
@@ -230,22 +229,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				50A722CE2B7C049D009AD7AB /* View+Stacked.swift in Sources */,
+				50A722F62B7DFC1B009AD7AB /* Colors+Flashzilla.swift in Sources */,
+				50A722F42B7DFC1B009AD7AB /* Shadows.swift in Sources */,
 				50A722C72B7BFEDC009AD7AB /* AddFlashCardView.swift in Sources */,
 				8A6886102A04794700DE1361 /* ContentView.swift in Sources */,
-				50A722C22B7BFC24009AD7AB /* Shadows.swift in Sources */,
 				8A68861C2A04795D00DE1361 /* Card.swift in Sources */,
-				50A722C52B7BFC24009AD7AB /* Colors+Flashzilla.swift in Sources */,
 				8A68861E2A047A3300DE1361 /* CardView.swift in Sources */,
 				8A6886202A04A01700DE1361 /* EditCards.swift in Sources */,
-				50A722C42B7BFC24009AD7AB /* PrimaryButton.swift in Sources */,
 				50A722D42B7C07D5009AD7AB /* FileManager+SaveInDocuments.swift in Sources */,
 				8A68860E2A04794700DE1361 /* FlashzillaApp.swift in Sources */,
+				50A722F32B7DFC1B009AD7AB /* Global.swift in Sources */,
+				50A722F52B7DFC1B009AD7AB /* Translations.swift in Sources */,
 				50730C7D2B5E58F4007E26F3 /* QuizView-ViewModel.swift in Sources */,
-				50A722C32B7BFC24009AD7AB /* Translations.swift in Sources */,
 				50730C7F2B62425E007E26F3 /* CardOverview.swift in Sources */,
 				50A722C92B7C020D009AD7AB /* FlashCardListView-ViewModel.swift in Sources */,
 				50A722BA2B7BF7CE009AD7AB /* FlashCardListView.swift in Sources */,
-				50A722C12B7BFC24009AD7AB /* Global.swift in Sources */,
+				50A722F72B7DFC1B009AD7AB /* PrimaryButton.swift in Sources */,
 				50A722CC2B7C03DE009AD7AB /* QuizView.swift in Sources */,
 				50730C7B2B5E54F3007E26F3 /* QuizViewAccessibility.swift in Sources */,
 			);
