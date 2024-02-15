@@ -6,17 +6,24 @@
 //
 
 import Foundation
+import SwiftUI
+import SwiftData
 
 extension QuizView {
-    @MainActor class ViewModel: ObservableObject {
-        let initialCards: [Card]
-        @Published var cards: [Card]
-        @Published var isActive = true
-        @Published var showingEditScreen = false
+    @Observable
+    class ViewModel {
+        var modelContext: ModelContext
         
-        init(cards: [Card]) {
-            self.cards = cards
-            self.initialCards = cards
+        var isActive = true
+        var showingEditScreen = false
+        
+        var cards: [Card] = []
+        
+        private var initialCards = [Card]()
+        
+        init(modelContext: ModelContext) {
+            self.modelContext = modelContext
+            fetchData()
         }
         
         func removeCard(at index: Int) {
@@ -30,7 +37,17 @@ extension QuizView {
         
         func resetCards() {
             isActive = true
-            cards = initialCards.shuffled()
+            fetchData() // so we can assure, any additions/deletions/edits will also be reflected
+        }
+        
+        func fetchData() {
+            do {
+                let descriptor = FetchDescriptor<Card>()
+                initialCards = try modelContext.fetch(descriptor).shuffled()
+                cards = initialCards
+            } catch {
+                print("Fetch failed")
+            }
         }
     }
 }

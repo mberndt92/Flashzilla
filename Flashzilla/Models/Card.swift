@@ -6,11 +6,22 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Card: Codable, Identifiable, Equatable {
-    var id = UUID()
-    let prompt: String
-    let answer: String
+@Model
+class Card: Identifiable, Equatable {
+    var id: UUID = UUID()
+    var prompt: String
+    var answer: String
+    
+    init(prompt: String, answer: String) {
+        self.prompt = prompt
+        self.answer = answer
+    }
+    
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 extension Card {

@@ -20,9 +20,7 @@
 		50A722C92B7C020D009AD7AB /* FlashCardListView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722C82B7C020D009AD7AB /* FlashCardListView-ViewModel.swift */; };
 		50A722CC2B7C03DE009AD7AB /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722CB2B7C03DE009AD7AB /* QuizView.swift */; };
 		50A722CE2B7C049D009AD7AB /* View+Stacked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722CD2B7C049D009AD7AB /* View+Stacked.swift */; };
-		50A722D22B7C0769009AD7AB /* CardWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722D12B7C0769009AD7AB /* CardWrapper.swift */; };
 		50A722D42B7C07D5009AD7AB /* FileManager+SaveInDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722D32B7C07D5009AD7AB /* FileManager+SaveInDocuments.swift */; };
-		50A722D62B7C0FC0009AD7AB /* SavesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722D52B7C0FC0009AD7AB /* SavesModel.swift */; };
 		8A68860E2A04794700DE1361 /* FlashzillaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A68860D2A04794700DE1361 /* FlashzillaApp.swift */; };
 		8A6886102A04794700DE1361 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A68860F2A04794700DE1361 /* ContentView.swift */; };
 		8A6886122A04794700DE1361 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A6886112A04794700DE1361 /* Assets.xcassets */; };
@@ -46,9 +44,7 @@
 		50A722C82B7C020D009AD7AB /* FlashCardListView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlashCardListView-ViewModel.swift"; sourceTree = "<group>"; };
 		50A722CB2B7C03DE009AD7AB /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		50A722CD2B7C049D009AD7AB /* View+Stacked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Stacked.swift"; sourceTree = "<group>"; };
-		50A722D12B7C0769009AD7AB /* CardWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardWrapper.swift; sourceTree = "<group>"; };
 		50A722D32B7C07D5009AD7AB /* FileManager+SaveInDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+SaveInDocuments.swift"; sourceTree = "<group>"; };
-		50A722D52B7C0FC0009AD7AB /* SavesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavesModel.swift; sourceTree = "<group>"; };
 		8A68860A2A04794700DE1361 /* Flashzilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashzilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A68860D2A04794700DE1361 /* FlashzillaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashzillaApp.swift; sourceTree = "<group>"; };
 		8A68860F2A04794700DE1361 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,8 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				8A68861B2A04795D00DE1361 /* Card.swift */,
-				50A722D12B7C0769009AD7AB /* CardWrapper.swift */,
-				50A722D52B7C0FC0009AD7AB /* SavesModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -240,11 +234,9 @@
 				8A6886102A04794700DE1361 /* ContentView.swift in Sources */,
 				50A722C22B7BFC24009AD7AB /* Shadows.swift in Sources */,
 				8A68861C2A04795D00DE1361 /* Card.swift in Sources */,
-				50A722D22B7C0769009AD7AB /* CardWrapper.swift in Sources */,
 				50A722C52B7BFC24009AD7AB /* Colors+Flashzilla.swift in Sources */,
 				8A68861E2A047A3300DE1361 /* CardView.swift in Sources */,
 				8A6886202A04A01700DE1361 /* EditCards.swift in Sources */,
-				50A722D62B7C0FC0009AD7AB /* SavesModel.swift in Sources */,
 				50A722C42B7BFC24009AD7AB /* PrimaryButton.swift in Sources */,
 				50A722D42B7C07D5009AD7AB /* FileManager+SaveInDocuments.swift in Sources */,
 				8A68860E2A04794700DE1361 /* FlashzillaApp.swift in Sources */,
@@ -396,6 +388,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -430,6 +423,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

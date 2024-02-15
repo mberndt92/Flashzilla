@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 enum AllTabs: String {
     case list = "list"
@@ -13,29 +14,35 @@ enum AllTabs: String {
 }
 
 struct ContentView: View {
+    @Environment(\.modelContext) var modelContext
     @State private var selection = AllTabs.list.rawValue
-    @StateObject var cardsWrapper = CardWrapper()
     
     var body: some View {
         TabView(selection: $selection) {
-            FlashCardListView()
+            FlashCardListView(modelContext: modelContext)
                 .tabItem {
                     Label(Translations.cardListTitle, systemImage: "list.bullet")
                 }
                 .tag(AllTabs.list.rawValue)
-            QuizView(cards: cardsWrapper.cards)
+            QuizView(modelContext: modelContext)
                 .tabItem {
                     Label(Translations.quizViewTitle, systemImage: "plus.circle.fill")
                 }
                 .tag(AllTabs.quiz.rawValue)
         }
         .tint(.designSystem.primary)
-        .environmentObject(cardsWrapper)
+        .modelContext(modelContext) // do I need this?
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+#Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Card.self, configurations: config)
+    
+    for card in Card.examples {
+        container.mainContext.insert(card)
     }
+    
+    return ContentView()
+        .modelContainer(container)
 }

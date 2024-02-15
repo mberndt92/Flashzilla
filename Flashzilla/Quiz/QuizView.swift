@@ -6,18 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct QuizView: View {
     @Environment(\.scenePhase) var scenePhase
-    
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
     
-    @StateObject private var viewModel = ViewModel(cards: [])
-    
-    init(cards: [Card]) {
-        _viewModel = StateObject(wrappedValue: ViewModel(cards: cards))
-    }
+    @State private var viewModel: ViewModel
     
     var shouldShowAccessibilityView: Bool {
         return differentiateWithoutColor || voiceOverEnabled
@@ -30,15 +26,17 @@ struct QuizView: View {
                 .ignoresSafeArea()
             VStack(spacing: 5) {
                 ZStack {
-                    ForEach(0..<viewModel.cards.count, id: \.self) { index in
-                        CardView(card: viewModel.cards[index]) {
-                            withAnimation {
-                                viewModel.removeCard(at: index)
+                    if viewModel.cards.isEmpty == false {
+                        ForEach(0..<viewModel.cards.count, id: \.self) { index in
+                            CardView(card: viewModel.cards[index]) {
+                                withAnimation {
+                                    viewModel.removeCard(at: index)
+                                }
                             }
+                            .stacked(at: index, in: viewModel.cards.count)
+                            .allowsHitTesting(index == viewModel.cards.count - 1)
+                            .accessibilityHidden(index < viewModel.cards.count - 1)
                         }
-                        .stacked(at: index, in: viewModel.cards.count)
-                        .allowsHitTesting(index == viewModel.cards.count - 1)
-                        .accessibilityHidden(index < viewModel.cards.count - 1)
                     }
                 }
                 
@@ -93,6 +91,11 @@ struct QuizView: View {
         .onAppear(perform: viewModel.resetCards)
     }
     
+    init(modelContext: ModelContext) {
+        let viewModel = ViewModel(modelContext: modelContext)
+        _viewModel = State(initialValue: viewModel)
+    }
+    
     // Workaround to avoid the warning "... loses global actor"
     private func resetCards() {
         viewModel.resetCards()
@@ -100,5 +103,12 @@ struct QuizView: View {
 }
 
 #Preview {
-    QuizView(cards: Card.examples)
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Card.self, configurations: config)
+    
+    for card in Card.examples {
+        container.mainContext.insert(card)
+    }
+    
+    return QuizView(modelContext: container.mainContext)
 }
