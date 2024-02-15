@@ -54,8 +54,8 @@ struct FlashCardListView: View {
             .toolbar {
                 ToolbarItem {
                     Button {
-//                        showingAddCard = true
-                        addExample()
+                        showingAddCard = true
+//                        addExample()
                     } label: {
                         Image(systemName: "plus")
                             .tint(Color.designSystem.primary)
