@@ -7,6 +7,8 @@
 
 import Foundation
 
+let isDebugging = false
+
 var currencyIdentifier: String {
     return Locale.current.currency?.identifier ?? "USD"
 }

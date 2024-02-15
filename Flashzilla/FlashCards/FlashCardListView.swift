@@ -54,27 +54,33 @@ struct FlashCardListView: View {
             .toolbar {
                 ToolbarItem {
                     Button {
-                        showingAddCard = true
-//                        addExample()
+                        if isDebugging {
+                            addExample()
+                        } else {
+                            showingAddCard = true
+                        }
+                        
                     } label: {
                         Image(systemName: "plus")
                             .tint(Color.designSystem.primary)
                     }
                 }
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        addExamples()
-                    } label: {
-                        Image(systemName: "testtube.2")
-                            .tint(Color.designSystem.primary)
+                if isDebugging {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            addExamples()
+                        } label: {
+                            Image(systemName: "testtube.2")
+                                .tint(Color.designSystem.primary)
+                        }
                     }
-                }
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        removeAll()
-                    } label: {
-                        Image(systemName: "trash.circle")
-                            .tint(Color.designSystem.primary)
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button {
+                            removeAll()
+                        } label: {
+                            Image(systemName: "trash.circle")
+                                .tint(Color.designSystem.primary)
+                        }
                     }
                 }
             }
