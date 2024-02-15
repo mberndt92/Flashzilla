@@ -13,7 +13,12 @@ struct QuizView: View {
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
     
-    @State private var viewModel: ViewModel
+    @Environment(\.modelContext) var modelContext
+    @Query var initialCards: [Card]
+    @State var cards: [Card] = [] // We remove cards from this copy here all the time while swiping
+    
+    @State var isActive = true
+    @State var showingEditScreen = false
     
     var shouldShowAccessibilityView: Bool {
         return differentiateWithoutColor || voiceOverEnabled
@@ -26,21 +31,21 @@ struct QuizView: View {
                 .ignoresSafeArea()
             VStack(spacing: 5) {
                 ZStack {
-                    if viewModel.cards.isEmpty == false {
-                        ForEach(0..<viewModel.cards.count, id: \.self) { index in
-                            CardView(card: viewModel.cards[index]) {
+                    if cards.isEmpty == false {
+                        ForEach(0..<cards.count, id: \.self) { index in
+                            CardView(card: cards[index]) {
                                 withAnimation {
-                                    viewModel.removeCard(at: index)
+                                    removeCard(at: index)
                                 }
                             }
-                            .stacked(at: index, in: viewModel.cards.count)
-                            .allowsHitTesting(index == viewModel.cards.count - 1)
-                            .accessibilityHidden(index < viewModel.cards.count - 1)
+                            .stacked(at: index, in: cards.count)
+                            .allowsHitTesting(index == cards.count - 1)
+                            .accessibilityHidden(index < cards.count - 1)
                         }
                     }
                 }
                 
-                if viewModel.cards.isEmpty {
+                if cards.isEmpty {
                     Button("Start Again", action: resetCards)
                         .padding()
                         .background(.white)
@@ -53,7 +58,7 @@ struct QuizView: View {
                 HStack {
                     Spacer()
                     Button {
-                        viewModel.showingEditScreen = true
+                        showingEditScreen = true
                     } label: {
                         Image(systemName: "plus.circle")
                             .padding()
@@ -70,35 +75,25 @@ struct QuizView: View {
             
             if shouldShowAccessibilityView {
                 QuizViewAccessibility(removeCardClosure: {
-                    viewModel.removeCard(at: viewModel.cards.count - 1)
+                    removeCard(at: cards.count - 1)
                 })
             }
         }
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
-                if viewModel.cards.isEmpty == false {
-                    viewModel.isActive = true
+                if cards.isEmpty == false {
+                    isActive = true
                 }
             } else {
-                viewModel.isActive = false
+                isActive = false
             }
         }
         .sheet(
-            isPresented: $viewModel.showingEditScreen,
-            onDismiss: viewModel.resetCards,
+            isPresented: $showingEditScreen,
+            onDismiss: resetCards,
             content: EditCards.init
         )
-        .onAppear(perform: viewModel.resetCards)
-    }
-    
-    init(modelContext: ModelContext) {
-        let viewModel = ViewModel(modelContext: modelContext)
-        _viewModel = State(initialValue: viewModel)
-    }
-    
-    // Workaround to avoid the warning "... loses global actor"
-    private func resetCards() {
-        viewModel.resetCards()
+        .onAppear(perform: resetCards)
     }
 }
 
@@ -110,5 +105,5 @@ struct QuizView: View {
         container.mainContext.insert(card)
     }
     
-    return QuizView(modelContext: container.mainContext)
+    return QuizView()
 }

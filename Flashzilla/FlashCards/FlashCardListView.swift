@@ -9,14 +9,20 @@ import SwiftUI
 import SwiftData
 
 struct FlashCardListView: View {
-    @State private var viewModel: ViewModel
-//    @Query var cards: [Card]
+    let title = "All Cards"
+    
+    @Environment(\.modelContext) var modelContext
+    @Query var cards: [Card]
+    
+    @State var selectedCard: Card? = nil
+    @State var showingEditCard = false
+    @State var showingAddCard = false
     
     var body: some View {
         NavigationStack {
             VStack {
                 List {
-                    ForEach(viewModel.cards) { card in
+                    ForEach(cards) { card in
                         HStack {
                             Text(card.prompt)
                             Spacer()
@@ -24,7 +30,7 @@ struct FlashCardListView: View {
                         }
                         .swipeActions(allowsFullSwipe: false) {
                             Button(role: .destructive) {
-                                viewModel.remove(card: card)
+                                remove(card: card)
                             } label: {
                                 Label("Delete", systemImage: "trash.fill")
                             }
@@ -32,24 +38,24 @@ struct FlashCardListView: View {
                             .tint(Color.designSystem.destructive)
                             
                             Button {
-                                viewModel.selectedCard = card
-                                viewModel.showingEditCard = true
+                                selectedCard = card
+                                showingEditCard = true
                             } label: {
                                 Label("Edit", systemImage: "pencil")
                             }
                             .tint(Color.designSystem.primary)
                         }
                     }
-                    .onDelete(perform: deleteCards) // not used yet as edit mode isn't added
+                    .onDelete(perform: remove) // not used yet as edit mode isn't added
                 }
             }
-            .navigationTitle(viewModel.title)
+            .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem {
                     Button {
-//                        viewModel.showingAddCard = true
-                        viewModel.addExample()
+//                        showingAddCard = true
+                        addExample()
                     } label: {
                         Image(systemName: "plus")
                             .tint(Color.designSystem.primary)
@@ -57,7 +63,7 @@ struct FlashCardListView: View {
                 }
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        viewModel.addExamples()
+                        addExamples()
                     } label: {
                         Image(systemName: "testtube.2")
                             .tint(Color.designSystem.primary)
@@ -65,32 +71,18 @@ struct FlashCardListView: View {
                 }
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        viewModel.removeAll()
+                        removeAll()
                     } label: {
                         Image(systemName: "trash.circle")
                             .tint(Color.designSystem.primary)
                     }
                 }
             }
-            .sheet(isPresented: $viewModel.showingAddCard, content: {
+            .sheet(isPresented: $showingAddCard, content: {
                 AddFlashCardView { prompt, answer in
-                    viewModel.add(prompt: prompt, answer: answer)
+                    add(prompt: prompt, answer: answer)
                 }
             })
-            .onAppear {
-                viewModel.fetchData()
-            }
-        }
-    }
-    
-    init(modelContext: ModelContext) {
-        let viewModel = ViewModel(modelContext: modelContext)
-        _viewModel = State(initialValue: viewModel)
-    }
-    
-    private func deleteCards(_ indexSet: IndexSet) {
-        for index in indexSet {
-            viewModel.remove(index: index)
         }
     }
 }
@@ -103,6 +95,6 @@ struct FlashCardListView: View {
         container.mainContext.insert(card)
     }
     
-    return FlashCardListView(modelContext: container.mainContext)
+    return FlashCardListView()
         .modelContainer(container)
 }

@@ -19,12 +19,12 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            FlashCardListView(modelContext: modelContext)
+            FlashCardListView()
                 .tabItem {
                     Label(Translations.listTabTitle, systemImage: "list.bullet")
                 }
                 .tag(AllTabs.list.rawValue)
-            QuizView(modelContext: modelContext)
+            QuizView()
                 .tabItem {
                     Label(Translations.quizTabTitle, systemImage: "plus.circle.fill")
                 }
