@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import SwiftData
 
+@Model
 class CardStatistics {
     private (set) var correct: Int = 0
     private (set) var wrong: Int = 0
@@ -17,6 +19,11 @@ class CardStatistics {
     
     var successRatio: Double {
         Double(correct / (correct + wrong))
+    }
+    
+    init() {
+        correct = 0
+        wrong = 0
     }
     
     func answeredCorrectly() {

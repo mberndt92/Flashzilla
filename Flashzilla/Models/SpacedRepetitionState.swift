@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import SwiftData
 
+@Model
 class SpacedRepetitionState {
     // Spaced Repetition: Days till next review
-    enum State: Int {
+    enum State: Int, Codable {
         case new = 0
         case box1 = 1
         case box2 = 3
@@ -21,7 +23,7 @@ class SpacedRepetitionState {
         case done = -1
     }
     
-    var state: State = .new
+    var state: State = State.new
     
     var isReadyForReview: Bool {
         guard let nextReview = nextReview else { return false }
@@ -29,6 +31,11 @@ class SpacedRepetitionState {
     }
     
     private var nextReview: Date? = Date.now
+    
+    init() {
+        state = .new
+        nextReview = Date.now
+    }
     
     func answeredCorrectly() {
         switch state {
@@ -41,6 +48,7 @@ class SpacedRepetitionState {
         case .box6: state = .box7
         default: break
         }
+        scheduleNextReview()
     }
     
     func answeredIncorrectly() {
@@ -54,6 +62,7 @@ class SpacedRepetitionState {
         case .box7: state = .box6
         default: break
         }
+        scheduleNextReview()
     }
     
     private func scheduleNextReview() {
