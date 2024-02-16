@@ -10,9 +10,11 @@ import SwiftData
 
 @Model
 class Card: Identifiable, Equatable {
+    
     var id: UUID = UUID()
     var front: String
     var back: String
+    var learningState = LearningState()
     
     init(front: String, back: String) {
         self.front = front
