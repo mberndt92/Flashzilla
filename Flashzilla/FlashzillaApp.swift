@@ -21,7 +21,7 @@ struct FlashzillaApp: App {
     
     init() {
         do {
-            container = try ModelContainer(for: Card.self)
+            container = try ModelContainer(for: SpacedRepetitionState.self, CardStatistics.self, Card.self)
         } catch {
             fatalError("Failed to create ModelContainer for Card.")
         }

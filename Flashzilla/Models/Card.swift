@@ -14,13 +14,15 @@ class Card: Identifiable, Equatable {
     var id: UUID = UUID()
     var front: String
     var back: String
-    var state = SpacedRepetitionState()
-    var statistics = CardStatistics()
+    var state: SpacedRepetitionState
+    var statistics: CardStatistics
     var tags: [String] = []
     
     init(front: String, back: String) {
         self.front = front
         self.back = back
+        self.state = SpacedRepetitionState()
+        self.statistics = CardStatistics()
     }
     
     static func == (lhs: Card, rhs: Card) -> Bool {
