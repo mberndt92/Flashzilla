@@ -13,26 +13,26 @@ struct EditCards: View {
     
     @State private var cards = [Card]()
     
-    @State private var newPrompt = ""
-    @State private var newAnswer = ""
+    @State private var newFront = ""
+    @State private var newBack = ""
     
     
     var body: some View {
         NavigationView {
             List {
                 Section("Add new card") {
-                    TextField("Prompt", text: $newPrompt)
-                    TextField("Answer", text: $newAnswer)
+                    TextField("Front", text: $newFront)
+                    TextField("Back", text: $newBack)
                     Button("Add card", action: addCard)
                 }
                 
                 Section {
                     ForEach(0..<cards.count, id: \.self) { index in
                         VStack(alignment: .leading) {
-                            Text(cards[index].prompt)
+                            Text(cards[index].front)
                                 .font(.headline)
                             
-                            Text(cards[index].answer)
+                            Text(cards[index].back)
                                 .foregroundColor(.secondary)
                         }
                     }
@@ -53,17 +53,17 @@ struct EditCards: View {
     }
     
     private func addCard() {
-        let trimmedPrompt = newPrompt.trimmingCharacters(in: .whitespaces)
-        let trimmedAnswer = newAnswer.trimmingCharacters(in: .whitespaces)
+        let trimmedFront = newFront.trimmingCharacters(in: .whitespaces)
+        let trimmedBack = newBack.trimmingCharacters(in: .whitespaces)
         
-        guard trimmedPrompt.isEmpty == false && trimmedAnswer.isEmpty == false else { return }
+        guard trimmedFront.isEmpty == false && trimmedBack.isEmpty == false else { return }
         
-        let card = Card(prompt: trimmedPrompt, answer: trimmedAnswer)
+        let card = Card(front: trimmedFront, back: trimmedBack)
         cards.insert(card, at: 0)
         saveData()
         
-        newPrompt = ""
-        newAnswer = ""
+        newFront = ""
+        newBack = ""
     }
     
     private func removeCards(at offsets: IndexSet) {

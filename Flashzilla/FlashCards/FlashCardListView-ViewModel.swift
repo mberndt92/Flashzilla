@@ -11,8 +11,8 @@ import SwiftData
 
 extension FlashCardListView {
     
-    func add(prompt: String, answer: String) {
-        modelContext.insert(Card(prompt: prompt, answer: answer))
+    func add(front: String, back: String) {
+        modelContext.insert(Card(front: front, back: back))
     }
     
     func remove(index: Int) {

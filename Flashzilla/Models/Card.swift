@@ -11,12 +11,12 @@ import SwiftData
 @Model
 class Card: Identifiable, Equatable {
     var id: UUID = UUID()
-    var prompt: String
-    var answer: String
+    var front: String
+    var back: String
     
-    init(prompt: String, answer: String) {
-        self.prompt = prompt
-        self.answer = answer
+    init(front: String, back: String) {
+        self.front = front
+        self.back = back
     }
     
     static func == (lhs: Card, rhs: Card) -> Bool {
@@ -25,14 +25,14 @@ class Card: Identifiable, Equatable {
 }
 
 extension Card {
-    static let example = Card(prompt: "Who played the 13th Doctor in Doctor Who?", answer: "Jodie Whittaker")
+    static let example = Card(front: "Who played the 13th Doctor in Doctor Who?", back: "Jodie Whittaker")
     static let examples: [Card] = [
-        Card(prompt: "apple", answer: "a maçã"),
-        Card(prompt: "mango", answer: "a manga"),
-        Card(prompt: "pineapple", answer: "o abacaxi"),
-        Card(prompt: "papaya", answer: "o mamão"),
-        Card(prompt: "watermelon", answer: "a melancia"),
-        Card(prompt: "grape", answer: "a uva"),
-        Card(prompt: "coconut", answer: "o coco")
+        Card(front: "apple", back: "a maçã"),
+        Card(front: "mango", back: "a manga"),
+        Card(front: "pineapple", back: "o abacaxi"),
+        Card(front: "papaya", back: "o mamão"),
+        Card(front: "watermelon", back: "a melancia"),
+        Card(front: "grape", back: "a uva"),
+        Card(front: "coconut", back: "o coco")
     ]
 }

@@ -31,7 +31,8 @@ struct ContentView: View {
                 .tag(AllTabs.quiz.rawValue)
         }
         .tint(.designSystem.primary)
-        .modelContext(modelContext) // do I need this?
+        .background(Color.designSystem.elevation)
+        .modelContext(modelContext)
     }
 }
 

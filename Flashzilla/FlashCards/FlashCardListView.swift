@@ -24,9 +24,9 @@ struct FlashCardListView: View {
                 List {
                     ForEach(cards) { card in
                         HStack {
-                            Text(card.prompt)
+                            Text(card.front)
                             Spacer()
-                            Text(card.answer)
+                            Text(card.back)
                         }
                         .swipeActions(allowsFullSwipe: false) {
                             Button(role: .destructive) {
@@ -85,8 +85,8 @@ struct FlashCardListView: View {
                 }
             }
             .sheet(isPresented: $showingAddCard, content: {
-                AddFlashCardView { prompt, answer in
-                    add(prompt: prompt, answer: answer)
+                AddFlashCardView { front, back in
+                    add(front: front, back: back)
                 }
             })
         }

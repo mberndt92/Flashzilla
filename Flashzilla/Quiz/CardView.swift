@@ -47,16 +47,16 @@ struct CardView: View {
             
             VStack {
                 if voiceOverEnabled {
-                    Text(isShowingAnswer ? card.answer : card.prompt)
+                    Text(isShowingAnswer ? card.back : card.front)
                         .font(.largeTitle)
                         .foregroundColor(.black)
                 } else {
-                    Text(card.prompt)
+                    Text(card.front)
                         .font(.largeTitle)
                         .foregroundColor(.black)
                     
                     if (isShowingAnswer) {
-                        Text(card.answer)
+                        Text(card.back)
                             .font(.title)
                             .foregroundColor(.gray)
                     }

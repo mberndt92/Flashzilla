@@ -25,10 +25,7 @@ struct QuizView: View {
     }
     
     var body: some View {
-        ZStack {
-            Image(decorative: "background")
-                .resizable()
-                .ignoresSafeArea()
+        VStack {
             VStack(spacing: 5) {
                 ZStack {
                     if cards.isEmpty == false {
@@ -41,6 +38,7 @@ struct QuizView: View {
                             .stacked(at: index, in: cards.count)
                             .allowsHitTesting(index == cards.count - 1)
                             .accessibilityHidden(index < cards.count - 1)
+                            .opacity(index >= (cards.count - 5) ? 1 : 0)
                         }
                     }
                 }
@@ -52,25 +50,6 @@ struct QuizView: View {
                         .foregroundColor(.black)
                         .clipShape(Capsule())
                 }
-            }
-            
-            VStack {
-                HStack {
-                    Spacer()
-                    Button {
-                        showingEditScreen = true
-                    } label: {
-                        Image(systemName: "plus.circle")
-                            .padding()
-                            .background(.black.opacity(0.75))
-                            .clipShape(Circle())
-                    }
-                }
-                .foregroundColor(.white)
-                .font(.largeTitle)
-                .padding()
-                
-                Spacer()
             }
             
             if shouldShowAccessibilityView {
@@ -88,11 +67,6 @@ struct QuizView: View {
                 isActive = false
             }
         }
-        .sheet(
-            isPresented: $showingEditScreen,
-            onDismiss: resetCards,
-            content: EditCards.init
-        )
         .onAppear(perform: resetCards)
     }
 }

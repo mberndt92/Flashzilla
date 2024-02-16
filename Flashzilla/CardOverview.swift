@@ -30,13 +30,13 @@ struct CardOverview: View {
                 }
                 
                 List {
-                    ForEach(cards, id: \.prompt) { card in
+                    ForEach(cards, id: \.front) { card in
                         VStack(alignment: .trailing) {
                             HStack {
-                                Text(card.prompt)
+                                Text(card.front)
                                     .font(.footnote)
                                     .background(Color.green)
-                                Text(card.answer)
+                                Text(card.back)
                                     .font(.caption)
                                     .foregroundColor(.gray)
                                     .background(Color.yellow)
