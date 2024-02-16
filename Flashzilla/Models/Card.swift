@@ -31,7 +31,7 @@ class Card: Identifiable, Equatable {
 }
 
 extension Card {
-    static let example = Card(front: "Who played the 13th Doctor in Doctor Who?", back: "Jodie Whittaker")
+    static let example = Card(front: "watermelon", back: "a melancia")
     static let examples: [Card] = [
         Card(front: "apple", back: "a maçã"),
         Card(front: "mango", back: "a manga"),
