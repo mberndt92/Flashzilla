@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LearningState {
+class SpacedRepetitionState {
     // Spaced Repetition: Days till next review
     enum State: Int {
         case new = 0

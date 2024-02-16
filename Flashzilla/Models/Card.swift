@@ -14,7 +14,9 @@ class Card: Identifiable, Equatable {
     var id: UUID = UUID()
     var front: String
     var back: String
-    var learningState = LearningState()
+    var state = SpacedRepetitionState()
+    var statistics = CardStatistics()
+    var tags: [String] = []
     
     init(front: String, back: String) {
         self.front = front
