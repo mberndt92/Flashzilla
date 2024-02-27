@@ -11,22 +11,30 @@ struct AddFlashCardView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @State private var prompt = ""
-    @State private var answer = ""
+    @State private var front = ""
+    @State private var back = ""
     
     @State var onSave: (String, String) -> ()
     
     var body: some View {
-        VStack {
-            TextField("Prompt", text: $prompt)
-            TextField("Answer", text: $answer)
-            Button("Save") { onSavePressed() }
+        NavigationView {
+            Form {
+                TextField("Front", text: $front)
+                TextField("Back", text: $back)
+            }
+            .toolbar {
+                Button("Save") {
+                    onSavePressed()
+                }
+            }
+            .navigationTitle("Add Flashcard")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
     
     private func onSavePressed() {
-        let trimmedPrompt = prompt.trimmingCharacters(in: .whitespaces)
-        let trimmedAnswer = answer.trimmingCharacters(in: .whitespaces)
+        let trimmedPrompt = front.trimmingCharacters(in: .whitespaces)
+        let trimmedAnswer = back.trimmingCharacters(in: .whitespaces)
         
         guard trimmedPrompt.isEmpty == false && trimmedAnswer.isEmpty == false else { return }
         

@@ -34,7 +34,7 @@ struct FlashCardListView: View {
                             } label: {
                                 Label("Delete", systemImage: "trash.fill")
                             }
-                            // this -shouldn't- be needed due to role .destructive
+                            // this is needed despite the role .destructive... -.-
                             .tint(Color.designSystem.destructive)
                             
                             Button {

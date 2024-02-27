@@ -31,7 +31,7 @@ extension FlashCardListView {
     }
     
     func addExample() {
-        modelContext.insert(Card.example)
+        modelContext.insert(Card.examples.randomElement()!)
     }
     
     func addExamples() {
