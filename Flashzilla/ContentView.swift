@@ -14,7 +14,6 @@ enum AllTabs: String {
 }
 
 struct ContentView: View {
-    @Environment(\.modelContext) var modelContext
     @State private var selection = AllTabs.list.rawValue
     
     var body: some View {
@@ -24,7 +23,7 @@ struct ContentView: View {
                     Label(Translations.listTabTitle, systemImage: "list.bullet")
                 }
                 .tag(AllTabs.list.rawValue)
-            QuizView()
+            QuizMenu()
                 .tabItem {
                     Label(Translations.quizTabTitle, systemImage: "plus.circle.fill")
                 }
@@ -32,7 +31,7 @@ struct ContentView: View {
         }
         .tint(.designSystem.primary)
         .background(Color.designSystem.elevation)
-        .modelContext(modelContext)
+        
     }
 }
 

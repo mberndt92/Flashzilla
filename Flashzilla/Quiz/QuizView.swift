@@ -13,8 +13,8 @@ struct QuizView: View {
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
     
-    @Environment(\.modelContext) var modelContext
-    @Query var initialCards: [Card]
+//    @Environment(\.modelContext) var modelContext
+    let initialCards: [Card]
     @State var cards: [Card] = [] // We remove cards from this copy here all the time while swiping
     
     @State var isActive = true
@@ -69,6 +69,11 @@ struct QuizView: View {
         }
         .onAppear(perform: resetCards)
     }
+    
+    init(cards: [Card]) {
+        initialCards = cards
+        _cards = State(initialValue: initialCards)
+    }
 }
 
 #Preview {
@@ -79,5 +84,5 @@ struct QuizView: View {
         container.mainContext.insert(card)
     }
     
-    return QuizView()
+    return QuizView(cards: Card.examples)
 }

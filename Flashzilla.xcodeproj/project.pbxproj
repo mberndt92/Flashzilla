@@ -12,6 +12,8 @@
 		50730C7B2B5E54F3007E26F3 /* QuizViewAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50730C7A2B5E54F3007E26F3 /* QuizViewAccessibility.swift */; };
 		50730C7D2B5E58F4007E26F3 /* QuizView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50730C7C2B5E58F4007E26F3 /* QuizView-ViewModel.swift */; };
 		50730C7F2B62425E007E26F3 /* CardOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50730C7E2B62425E007E26F3 /* CardOverview.swift */; };
+		5099ED252B8DC5E10066A318 /* FlashCardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5099ED242B8DC5E10066A318 /* FlashCardDetailView.swift */; };
+		5099ED272B8DC9850066A318 /* QuizMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5099ED262B8DC9850066A318 /* QuizMenu.swift */; };
 		50A722BA2B7BF7CE009AD7AB /* FlashCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722B92B7BF7CE009AD7AB /* FlashCardListView.swift */; };
 		50A722C72B7BFEDC009AD7AB /* AddFlashCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722C62B7BFEDC009AD7AB /* AddFlashCardView.swift */; };
 		50A722C92B7C020D009AD7AB /* FlashCardListView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A722C82B7C020D009AD7AB /* FlashCardListView-ViewModel.swift */; };
@@ -38,6 +40,8 @@
 		50730C7A2B5E54F3007E26F3 /* QuizViewAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewAccessibility.swift; sourceTree = "<group>"; };
 		50730C7C2B5E58F4007E26F3 /* QuizView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuizView-ViewModel.swift"; sourceTree = "<group>"; };
 		50730C7E2B62425E007E26F3 /* CardOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOverview.swift; sourceTree = "<group>"; };
+		5099ED242B8DC5E10066A318 /* FlashCardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardDetailView.swift; sourceTree = "<group>"; };
+		5099ED262B8DC9850066A318 /* QuizMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizMenu.swift; sourceTree = "<group>"; };
 		50A722B92B7BF7CE009AD7AB /* FlashCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardListView.swift; sourceTree = "<group>"; };
 		50A722C62B7BFEDC009AD7AB /* AddFlashCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlashCardView.swift; sourceTree = "<group>"; };
 		50A722C82B7C020D009AD7AB /* FlashCardListView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlashCardListView-ViewModel.swift"; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 				50A722B92B7BF7CE009AD7AB /* FlashCardListView.swift */,
 				50A722C82B7C020D009AD7AB /* FlashCardListView-ViewModel.swift */,
 				50A722C62B7BFEDC009AD7AB /* AddFlashCardView.swift */,
+				5099ED242B8DC5E10066A318 /* FlashCardDetailView.swift */,
 			);
 			path = FlashCards;
 			sourceTree = "<group>";
@@ -87,6 +92,7 @@
 				8A68861D2A047A3300DE1361 /* CardView.swift */,
 				50A722CB2B7C03DE009AD7AB /* QuizView.swift */,
 				50730C7C2B5E58F4007E26F3 /* QuizView-ViewModel.swift */,
+				5099ED262B8DC9850066A318 /* QuizMenu.swift */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -246,9 +252,11 @@
 				8A68860E2A04794700DE1361 /* FlashzillaApp.swift in Sources */,
 				50A722F32B7DFC1B009AD7AB /* Global.swift in Sources */,
 				50A722F52B7DFC1B009AD7AB /* Translations.swift in Sources */,
+				5099ED252B8DC5E10066A318 /* FlashCardDetailView.swift in Sources */,
 				50730C7D2B5E58F4007E26F3 /* QuizView-ViewModel.swift in Sources */,
 				50730C7F2B62425E007E26F3 /* CardOverview.swift in Sources */,
 				50A722C92B7C020D009AD7AB /* FlashCardListView-ViewModel.swift in Sources */,
+				5099ED272B8DC9850066A318 /* QuizMenu.swift in Sources */,
 				50A722BA2B7BF7CE009AD7AB /* FlashCardListView.swift in Sources */,
 				50A722F72B7DFC1B009AD7AB /* PrimaryButton.swift in Sources */,
 				50A722CC2B7C03DE009AD7AB /* QuizView.swift in Sources */,

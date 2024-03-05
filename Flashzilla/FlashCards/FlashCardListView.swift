@@ -9,13 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct FlashCardListView: View {
+    
     let title = "All Cards"
     
     @Environment(\.modelContext) var modelContext
     @Query var cards: [Card]
     
-    @State var selectedCard: Card? = nil
-    @State var showingEditCard = false
+    @State var selectedCard: Card?
+    @State var showingCardDetail = false
     @State var showingAddCard = false
     
     var body: some View {
@@ -28,6 +29,11 @@ struct FlashCardListView: View {
                             Spacer()
                             Text(card.back)
                         }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            selectedCard = card
+                            showingCardDetail = true
+                        }
                         .swipeActions(allowsFullSwipe: false) {
                             Button(role: .destructive) {
                                 remove(card: card)
@@ -39,7 +45,7 @@ struct FlashCardListView: View {
                             
                             Button {
                                 selectedCard = card
-                                showingEditCard = true
+                                showingCardDetail = true
                             } label: {
                                 Label("Edit", systemImage: "pencil")
                             }
@@ -85,9 +91,12 @@ struct FlashCardListView: View {
                 }
             }
             .sheet(isPresented: $showingAddCard, content: {
-                AddFlashCardView { front, back in
-                    add(front: front, back: back)
+                AddFlashCardView { front, back, tags in
+                    add(front: front, back: back, tags: tags)
                 }
+            })
+            .sheet(item: $selectedCard, content: { selectedCard in
+                FlashCardDetailView(card: selectedCard)
             })
         }
     }
@@ -95,7 +104,11 @@ struct FlashCardListView: View {
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Card.self, configurations: config)
+    
+    let container = try! ModelContainer(
+        for: SpacedRepetitionState.self, CardStatistics.self, Card.self,
+        configurations: config
+    )
     
     for card in Card.examples {
         container.mainContext.insert(card)

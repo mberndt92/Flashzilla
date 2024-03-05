@@ -13,14 +13,16 @@ struct AddFlashCardView: View {
     
     @State private var front = ""
     @State private var back = ""
+    @State private var tags = ""
     
-    @State var onSave: (String, String) -> ()
+    @State var onSave: (String, String, [String]) -> ()
     
     var body: some View {
         NavigationView {
             Form {
                 TextField("Front", text: $front)
                 TextField("Back", text: $back)
+                TextField("Tags", text: $tags)
             }
             .toolbar {
                 Button("Save") {
@@ -35,14 +37,15 @@ struct AddFlashCardView: View {
     private func onSavePressed() {
         let trimmedPrompt = front.trimmingCharacters(in: .whitespaces)
         let trimmedAnswer = back.trimmingCharacters(in: .whitespaces)
+        let separatedTags = tags.trimmingCharacters(in: .whitespaces).components(separatedBy: ",")
         
         guard trimmedPrompt.isEmpty == false && trimmedAnswer.isEmpty == false else { return }
         
-        onSave(trimmedPrompt, trimmedAnswer)
+        onSave(trimmedPrompt, trimmedAnswer, separatedTags)
         dismiss()
     }
 }
 
 #Preview {
-    AddFlashCardView(onSave: { prompt, answer in })
+    AddFlashCardView(onSave: { prompt, answer, tags in })
 }
